@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSignalrOrleans.Server", "BlazorSignalrOrleans\Server\BlazorSignalrOrleans.Server.csproj", "{BC2A8D3E-37F7-4095-B78E-9164C779420F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSignalrOrleans.Client", "BlazorSignalrOrleans\Client\BlazorSignalrOrleans.Client.csproj", "{B8D07C21-80D7-4A83-9A49-BD11A183CA0B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSignalrOrleans.Shared", "BlazorSignalrOrleans\Shared\BlazorSignalrOrleans.Shared.csproj", "{2160F433-8092-4BB2-A213-A061B971B08E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorSignalrOrleans.Silo", "BlazorSignalrOrleans.Silo\BlazorSignalrOrleans.Silo.csproj", "{F9B2F8CE-A03A-406B-B3BA-CE460177EE3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorSignalrOrleans.Grains.Interfaces", "BlazorSignalrOrleans.Grains.Interfaces\BlazorSignalrOrleans.Grains.Interfaces.csproj", "{31D980A7-8F28-436B-9F0B-BD974F13834E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorSignalrOrleans.Grains", "BlazorSignalrOrleans.Grains\BlazorSignalrOrleans.Grains.csproj", "{F21BED6D-DCFE-4F11-9C12-D61082B77128}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC2A8D3E-37F7-4095-B78E-9164C779420F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2A8D3E-37F7-4095-B78E-9164C779420F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC2A8D3E-37F7-4095-B78E-9164C779420F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC2A8D3E-37F7-4095-B78E-9164C779420F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8D07C21-80D7-4A83-9A49-BD11A183CA0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8D07C21-80D7-4A83-9A49-BD11A183CA0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8D07C21-80D7-4A83-9A49-BD11A183CA0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8D07C21-80D7-4A83-9A49-BD11A183CA0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2160F433-8092-4BB2-A213-A061B971B08E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2160F433-8092-4BB2-A213-A061B971B08E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2160F433-8092-4BB2-A213-A061B971B08E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2160F433-8092-4BB2-A213-A061B971B08E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9B2F8CE-A03A-406B-B3BA-CE460177EE3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9B2F8CE-A03A-406B-B3BA-CE460177EE3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9B2F8CE-A03A-406B-B3BA-CE460177EE3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9B2F8CE-A03A-406B-B3BA-CE460177EE3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31D980A7-8F28-436B-9F0B-BD974F13834E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31D980A7-8F28-436B-9F0B-BD974F13834E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31D980A7-8F28-436B-9F0B-BD974F13834E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31D980A7-8F28-436B-9F0B-BD974F13834E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F21BED6D-DCFE-4F11-9C12-D61082B77128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F21BED6D-DCFE-4F11-9C12-D61082B77128}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F21BED6D-DCFE-4F11-9C12-D61082B77128}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F21BED6D-DCFE-4F11-9C12-D61082B77128}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CA78AFE1-CCCB-487E-B350-42F03ABA6204}
+	EndGlobalSection
+EndGlobal
