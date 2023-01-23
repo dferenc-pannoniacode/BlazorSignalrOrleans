@@ -1,55 +1,50 @@
-﻿using BlazorSignalrOrleans.Grains;
-using Microsoft.Extensions.Logging;
-using Orleans;
-using Orleans.Configuration;
-using Orleans.Hosting;
-using System;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Hosting;
+using Serilog;
+using System.Runtime.CompilerServices;
 
 namespace BlazorSignalrOrleans.Silo
 {
     public class Program
     {
+        private static IHost? _host;
+
         static int Main(string[] args)
         {
-            return RunMainAsync().Result;
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Async(x => x.Console())
+                .CreateLogger();
+
+            StartHost().Wait();
+
+            Console.WriteLine("\n\n Press Enter to terminate...\n\n");
+            Console.ReadLine();
+
+            return 0;
         }
 
-        public static async Task<int> RunMainAsync()
+        public static async Task StartHost()
         {
-            try
-            {
-                var host = await StartSilo();
-                Console.WriteLine("\n\n Press Enter to terminate...\n\n");
-                Console.ReadLine();
+            Log.Information("Silo starting up.");
 
-                await host.StopAsync();
-
-                return 0;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                return 1;
-            }
-        }
-
-        private static async Task<ISiloHost> StartSilo()
-        {
-            // define the cluster configuration
-            var builder = new SiloHostBuilder()
-                .UseLocalhostClustering()
-                .Configure<ClusterOptions>(options =>
+            _host = Host.CreateDefaultBuilder()
+                .UseOrleans(siloBuilder =>
                 {
-                    options.ClusterId = "dev";
-                    options.ServiceId = "BlazorSignalrOrleans";
+                    siloBuilder.UseLocalhostClustering();
+                    siloBuilder.ConfigureLogging(x => x.AddSerilog());
                 })
-                .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(MessageRelayGrain).Assembly).WithReferences())
-                .ConfigureLogging(logging => logging.AddConsole());
+                .Build();
 
-            var host = builder.Build();
-            await host.StartAsync();
-            return host;
+            await _host.StartAsync();
+        }
+        public static async Task StopHost()
+        {
+            if (_host != null)
+            {
+                Log.Information("Silo shutting down.");
+
+                await _host.StopAsync();
+            }
         }
     }
 }

@@ -1,14 +1,14 @@
 ﻿using BlazorSignalrOrleans.Grains.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
-using Orleans;
-using System.Threading.Tasks;
 
 namespace BlazorSignalrOrleans.Server.Hubs
 {
     [Authorize]
     public class ChatHub : Hub
     {
+        public static readonly Guid InstanceGuid = Guid.NewGuid();
+
         private readonly IClusterClient _client;
 
         public ChatHub(IClusterClient client)
@@ -16,11 +16,10 @@ namespace BlazorSignalrOrleans.Server.Hubs
             _client = client;
         }
 
-        public async Task SendMessage(string user, string message)
+        public async Task SendMessage(string message)
         {
-            var friend = _client.GetGrain<IMessageRelay>(0);
-            var response = await friend.RelayMessage(user, message);
-            await Clients.All.SendAsync("ReceiveMessage", user, response);
+            var messageRelayGrain = _client.GetGrain<IMessageRelayGrain>(InstanceGuid);
+            await messageRelayGrain.SendMessage(Context.User?.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.Value ?? "Unknown user", message);
         }
     }
 }

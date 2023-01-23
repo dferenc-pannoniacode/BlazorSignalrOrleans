@@ -1,30 +1,36 @@
 # BlazorSignalrOrleans
-A simple example of Blazor WASM (ASP.NET Core Hosted), SignalR, Microsoft Orleans and Identity authentication and authorization integration in .NET 5.
+This project is a simple example of Blazor and Microsoft Orleans integration via SignalR for real-time communication in .NET 7.
 
-## Purpose
-This project is a small demonstration of how to integrate Blazor WASM (ASP.NET Core Hosted), SignalR, Microsoft Orleans and Identity authentication and authorization in .NET 5.
-There is a switch in appsettings.json "BundledMode" which controls if the silo is run from the ASP.NET application or should be run separately/standalone. I know there is Orleans integration
-directly with ASP.NET host but I don't think that is a good way to go regarding scaling.
+## How Does It Work?
+The ASP.NET backend uses Orleans Observers to listen for messages from Orleans Grains and forwards the messages to the Blazor front-end using a SignalR connection.
+A hosted service in the ASP.NET backend is used to (re)subscribe the Observer every 3 minutes, while the Observer subscribes with a 5 minute timeout.
+Identity is used in this example just to show how messages can be tied to a specific identity.
 
-One SignalR hub is implemented which receives a message from a chat page on the Blazor app and calls an Orleans Grain which does some work with it and returns a result which is
-then forwarded to the chat page as a response. The idea is behind this that the ASP.NET application itself is kind of a "switch" that routes "traffic" towards proper Grains.
+## Configuration
+The ASP.NET backend project (BlazorSignalrOrleans) has a "BundledMode" switch in it's appsettings.json. When it's set to "true" the Silo will be started alongside the
+backend. This is made for development and debugging purposes just for this example. In ideal deployments this would be set to "false" and the Silo would be started as
+a separate application.
 
-Check out the technology specific documentation on more info and ideas on how to use these technologies in your own projects.
+## What Is It Good Foor
+This example demonstrated how Grains can process data and forward it in real-time to Blazor clients. Example usage would be a chat application, browser games, betting
+software or anything that needs a constant stream of data from backend to frontend in combination with distributed computing.
 
-## To Do
-* Integrate Entity Framework with Grains
-* Add state persistence to Grains
-* More ideas might come to my mind later...
+## Next Steps
+A logical next-step for usage would be configuring Orleans so it works trully distributed with data streaming between grains and forwarding to Blazor clients. However,
+that is outside of scope for this example and you should look into Orleans documentation for that functionality.
+
+## Source
+There is a branch for a .NET 5 version of this example but it's not using observers and the implementation was pretty naive. Left here just for archive and in case
+anyone wants to look at it.
 
 ## Links
-* ASP.NET Core - https://docs.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-5.0
-* Blazor - https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-5.0
-* SignalR - https://docs.microsoft.com/en-us/aspnet/core/signalr/introduction?view=aspnetcore-5.0
-* Microsoft Orleans - https://dotnet.github.io/orleans/docs/index.html
-* Identity - https://docs.microsoft.com/en-us/aspnet/core/security/authentication/?view=aspnetcore-5.0
+* ASP.NET Core - https://learn.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-7.0
+* Blazor - https://learn.microsoft.com/en-us/aspnet/core/blazor/?WT.mc_id=dotnet-35129-website&view=aspnetcore-7.0
+* SignalR - https://learn.microsoft.com/en-us/aspnet/core/signalr/introduction?WT.mc_id=dotnet-35129-website&view=aspnetcore-7.0
+* Microsoft Orleans - https://learn.microsoft.com/en-us/dotnet/orleans/overview
 
 ## License
-Copyright (c) 2020 Daniel Ferenc
+Copyright (c) 2020-2022 Daniel Ferenc
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

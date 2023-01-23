@@ -1,7 +1,86 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+<PageTitle>Index</PageTitle>
 
-Welcome to your new app.
+<h1>BlazorSignalrOrleans</h1>
+<p>
+    This project is a simple example of Blazor and Microsoft Orleans integration via SignalR for real-time communication in .NET 7.
+</p>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<h2>How Does It Work?</h2>
+<p>
+    The ASP.NET backend uses Orleans Observers to listen for messages from Orleans Grains and forwards the messages to the Blazor front-end using a SignalR connection.
+    A hosted service in the ASP.NET backend is used to (re)subscribe the Observer every 3 minutes, while the Observer subscribes with a 5 minute timeout.
+    Identity is used in this example just to show how messages can be tied to a specific identity.
+</p>
+
+<h2>Configuration</h2>
+<p>
+    The ASP.NET backend project (BlazorSignalrOrleans) has a "BundledMode" switch in it's appsettings.json. When it's set to "true" the Silo will be started alongside the
+    backend. This is made for development and debugging purposes just for this example. In ideal deployments this would be set to "false" and the Silo would be started as
+    a separate application.
+</p>
+
+<h2>What Is It Good Foor</h2>
+<p>
+    This example demonstrated how Grains can process data and forward it in real-time to Blazor clients. Example usage would be a chat application, browser games, betting
+    software or anything that needs a constant stream of data from backend to frontend in combination with distributed computing.
+</p>
+
+<h2>Usage</h2>
+<p>
+    To test out this application you will have to register (top right) and then click on the "chat" link in the navigation menu. Enter a message in the input box and click "Send".
+    The message will be sent to all connected clients and it will include the unique identifier of the Grain that processed the message and the unique identifier of the user
+    who sent the message.
+</p>
+
+<h2>Next Steps</h2>
+<p>
+    A logical next-step for usage would be configuring Orleans so it works trully distributed with data streaming between grains and forwarding to Blazor clients. However,
+    that is outside of scope for this example and you should look into Orleans documentation for that functionality.
+</p>
+
+<h2>Source</h2>
+<p>
+    There is a branch for a .NET 5 version of this example but it's not using observers and the implementation was pretty naive. Left here just for archive and in case
+    anyone wants to look at it.
+</p>
+
+<h2>Links</h2>
+<p>
+    <ul>
+        <li><a target="_blank" href="https://learn.microsoft.com/en-us/aspnet/core/introduction-to-aspnet-core?view=aspnetcore-7.0">ASP.NET Core</a></li>
+        <li><a target="_blank" href="https://learn.microsoft.com/en-us/aspnet/core/blazor/?WT.mc_id=dotnet-35129-website&view=aspnetcore-7.0">Blazor</a></li>
+        <li><a target="_blank" href="https://learn.microsoft.com/en-us/aspnet/core/signalr/introduction?WT.mc_id=dotnet-35129-website&view=aspnetcore-7.0">SignalR</a></li>
+        <li><a target="_blank" href="https://learn.microsoft.com/en-us/dotnet/orleans/overview">Microsoft Orleans</a></li>
+    </ul>
+</p>
+
+<h2>License</h2>
+<p>
+    Copyright (c) 2020-2022 Daniel Ferenc
+</p>
+
+<p>
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+</p>
+
+<p>
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+</p>
+
+<p>
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+</p>
